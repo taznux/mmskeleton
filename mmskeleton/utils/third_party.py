@@ -1,8 +1,8 @@
 import lazy_import
 
-pycocotools = lazy_import.lazy_module("pycocotools")
-COCO = lazy_import.lazy_module("pycocotools.COCO")
-COCOeval = lazy_import.lazy_module("pycocotools.COCOeval")
+pycocotools = lazy_import.lazy_module("pycocotools.coco")
+COCO = lazy_import.lazy_module("pycocotools.coco.COCO")
+COCOeval = lazy_import.lazy_module("pycocotools.coco.COCOeval")
 mmdet = lazy_import.lazy_module("mmdet")
 lazy_import.lazy_module("mmdet.apis")
 

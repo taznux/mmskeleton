@@ -1,4 +1,4 @@
-mmcv
+mmcv-full==1.0.5
 torch>=1.1
 torchvision
 lazy_import

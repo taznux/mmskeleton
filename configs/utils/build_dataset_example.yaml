@@ -1,13 +1,13 @@
 processor_cfg:
   type: "processor.skeleton_dataset.build"
   gpus: 1
-  worker_per_gpu: 2
+  worker_per_gpu: 1
   video_dir: resource/data_example
   out_dir: "data/dataset_example"
   category_annotation: resource/category_annotation_example.json
   detection_cfg:
-    model_cfg: configs/mmdet/cascade_rcnn_r50_fpn_1x.py
-    checkpoint_file: mmskeleton://mmdet/cascade_rcnn_r50_fpn_20e
+    model_cfg: ../mmdetection/configs/cascade_rcnn/cascade_rcnn_r50_fpn_1x_coco.py
+    checkpoint_file: http://download.openmmlab.com/mmdetection/v2.0/cascade_rcnn/cascade_rcnn_r50_fpn_1x_coco/cascade_rcnn_r50_fpn_1x_coco_20200316-3dc56deb.pth
     bbox_thre: 0.8
   estimation_cfg:
     model_cfg: configs/pose_estimation/hrnet/pose_hrnet_w32_256x192_test.yaml
