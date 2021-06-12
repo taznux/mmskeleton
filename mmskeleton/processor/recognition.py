@@ -3,9 +3,10 @@ import torch
 import logging
 import numpy as np
 from mmskeleton.utils import call_obj, import_obj, load_checkpoint
-from mmcv.runner import Runner
+from mmcv.runner import EpochBasedRunner
 from mmcv import Config, ProgressBar
 from mmcv.parallel import MMDataParallel
+from mmdet.utils import get_root_logger
 
 
 def test(model_cfg,
@@ -75,7 +76,8 @@ def train(
         resume_from=None,
         load_from=None,
 ):
-
+    logger = get_root_logger(log_level=log_level)
+    
     # calculate batch size
     if gpus < 0:
         gpus = torch.cuda.device_count()
@@ -107,7 +109,7 @@ def train(
 
     # build runner
     optimizer = call_obj(params=model.parameters(), **optimizer_cfg)
-    runner = Runner(model, batch_processor, optimizer, work_dir, log_level)
+    runner = EpochBasedRunner(model, batch_processor, optimizer, work_dir, logger)
     runner.register_training_hooks(**training_hooks)
 
     if resume_from:
